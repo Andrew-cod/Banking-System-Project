@@ -1,0 +1,1 @@
+Acest este un file nou creeat de vim direcct in git bash in consola apoi modificat la fel in consola 
