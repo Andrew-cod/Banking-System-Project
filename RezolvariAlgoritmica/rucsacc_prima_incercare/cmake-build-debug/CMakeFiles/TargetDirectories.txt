@@ -1,0 +1,3 @@
+C:/Users/arapu/CLionProjects/rucsacc_prima_incercare/cmake-build-debug/CMakeFiles/rucsacc_prima_incercare.dir
+C:/Users/arapu/CLionProjects/rucsacc_prima_incercare/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arapu/CLionProjects/rucsacc_prima_incercare/cmake-build-debug/CMakeFiles/rebuild_cache.dir

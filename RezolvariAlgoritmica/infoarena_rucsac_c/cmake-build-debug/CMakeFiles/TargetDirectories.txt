@@ -1,0 +1,3 @@
+C:/Users/arapu/CLionProjects/infoarena_rucsac_c/cmake-build-debug/CMakeFiles/infoarena_rucsac_c.dir
+C:/Users/arapu/CLionProjects/infoarena_rucsac_c/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arapu/CLionProjects/infoarena_rucsac_c/cmake-build-debug/CMakeFiles/rebuild_cache.dir

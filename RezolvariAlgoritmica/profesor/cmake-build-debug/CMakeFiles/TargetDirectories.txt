@@ -1,0 +1,3 @@
+C:/Users/arapu/CLionProjects/profesor/cmake-build-debug/CMakeFiles/profesor.dir
+C:/Users/arapu/CLionProjects/profesor/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arapu/CLionProjects/profesor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
