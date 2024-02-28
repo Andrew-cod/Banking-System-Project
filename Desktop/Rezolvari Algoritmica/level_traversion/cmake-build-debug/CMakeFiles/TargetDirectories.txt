@@ -1,0 +1,3 @@
+C:/Users/arapu/CLionProjects/level_traversion/cmake-build-debug/CMakeFiles/level_traversion.dir
+C:/Users/arapu/CLionProjects/level_traversion/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arapu/CLionProjects/level_traversion/cmake-build-debug/CMakeFiles/rebuild_cache.dir

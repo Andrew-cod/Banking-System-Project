@@ -1,0 +1,19 @@
+# ninja log v5
+0	97	6974123313989444	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+98	240	6974123315389898	test_clion.exe	ba1e3e2b7e66d745
+2	90	6974123759420972	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+91	218	6974123760653744	test_clion.exe	ba1e3e2b7e66d745
+2	86	6974124320049837	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+87	190	6974124321043373	test_clion.exe	ba1e3e2b7e66d745
+2	78	6974124412672875	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+78	180	6974124413652232	test_clion.exe	ba1e3e2b7e66d745
+2	80	6974127727691900	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+83	185	6974127728698641	test_clion.exe	ba1e3e2b7e66d745
+2	78	6974127895586846	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+78	178	6974127896558871	test_clion.exe	ba1e3e2b7e66d745
+2	82	6974151910187154	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+82	191	6974151911257417	test_clion.exe	ba1e3e2b7e66d745
+2	77	6974152391083606	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+77	177	6974152392052136	test_clion.exe	ba1e3e2b7e66d745
+2	113	6974168385237653	CMakeFiles/test_clion.dir/main.c.obj	4d526a05babb2d7d
+114	228	6974168386361399	test_clion.exe	ba1e3e2b7e66d745

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1701944594 source:d:\projects\grafuri\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+
