@@ -1,3 +1,0 @@
-C:/Users/arapu/CLionProjects/permutari ab/cmake-build-debug/CMakeFiles/permutari_ab.dir
-C:/Users/arapu/CLionProjects/permutari ab/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/arapu/CLionProjects/permutari ab/cmake-build-debug/CMakeFiles/rebuild_cache.dir

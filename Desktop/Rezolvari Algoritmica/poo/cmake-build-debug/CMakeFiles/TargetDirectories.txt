@@ -1,3 +1,0 @@
-C:/Users/arapu/CLionProjects/poo/cmake-build-debug/CMakeFiles/poo.dir
-C:/Users/arapu/CLionProjects/poo/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/arapu/CLionProjects/poo/cmake-build-debug/CMakeFiles/rebuild_cache.dir

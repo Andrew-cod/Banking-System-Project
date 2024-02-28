@@ -1,3 +1,0 @@
-C:/Users/arapu/CLionProjects/aa_3/cmake-build-debug/CMakeFiles/aa_3.dir
-C:/Users/arapu/CLionProjects/aa_3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/arapu/CLionProjects/aa_3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
