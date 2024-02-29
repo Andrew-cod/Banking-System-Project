@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1709178565 source:c:\users\arapu\desktop\banking system\main.cpp
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<conio.h>
+	<vector>
+
+1709168319 source:c:\users\arapu\desktop\banking system\database.c
+
