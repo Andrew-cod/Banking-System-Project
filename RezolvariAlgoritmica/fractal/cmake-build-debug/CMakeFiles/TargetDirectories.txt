@@ -1,3 +1,0 @@
-C:/Users/arapu/CLionProjects/fractal/cmake-build-debug/CMakeFiles/fractal.dir
-C:/Users/arapu/CLionProjects/fractal/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/arapu/CLionProjects/fractal/cmake-build-debug/CMakeFiles/rebuild_cache.dir

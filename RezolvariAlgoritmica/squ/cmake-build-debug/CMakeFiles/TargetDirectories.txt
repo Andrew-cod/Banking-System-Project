@@ -1,3 +1,0 @@
-C:/Users/arapu/CLionProjects/squ/cmake-build-debug/CMakeFiles/squ.dir
-C:/Users/arapu/CLionProjects/squ/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/arapu/CLionProjects/squ/cmake-build-debug/CMakeFiles/rebuild_cache.dir

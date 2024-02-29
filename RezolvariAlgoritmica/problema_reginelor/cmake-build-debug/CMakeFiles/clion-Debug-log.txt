@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\arapu\CLionProjects\problema_reginelor Select CMakeLists.txt
