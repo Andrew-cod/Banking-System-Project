@@ -1,14 +1,7 @@
-// ConsoleApplication2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
-
 #include <fstream>
-
 #include <stdlib.h>
-
 #include <conio.h>
-
 #include <vector>
 
 using namespace std;
@@ -16,8 +9,31 @@ using namespace std;
 class Persoana;
 class Cont_Bancar;
 class Card_Bancar;
+long long int generare_nr_card(){
+    return 1111111111111111;
+};
 
-string generare_IBAN(string nume, string prenume, unsigned short int an) {
+bool validare_pin(string pin){
+    return pin.length()==4 && isdigit(pin[0]) && isdigit(pin[1]) && isdigit(pin[2]) && isdigit(pin[3]);
+}
+bool validare_cvv(string cvv){
+    return cvv.length()==3 && isdigit(cvv[0]) && isdigit(cvv[1]) && isdigit(cvv[2]);
+}
+bool validare_identificator(string ide){
+    return ide.length()>=3 && isalpha(ide[0]);
+}
+
+int safe_number(){
+    string number;
+    cin>>number;
+    return stoi(number);
+}
+
+struct data_nasterii{
+    unsigned short int an=0, ziua=0 , luna=0;
+};
+
+string generare_IBAN(string nume, string prenume) {
 	string IBAN = "RO";
 	int sum = 0;
 	for (char c : nume) {
@@ -43,6 +59,7 @@ string generare_IBAN(string nume, string prenume, unsigned short int an) {
 bool validare_IBAN(string IBAN) {
 	return (IBAN.length() == 24) && isalpha(IBAN[0]) && isalpha(IBAN[1]) && isdigit(IBAN[2]) && isdigit(IBAN[3]);
 }
+
 
 class Card_Bancar {
 private: Cont_Bancar * cont;
@@ -174,14 +191,14 @@ class Persoana {
 private: string nume;
 		 string login;
 		 string prenume;
-		 unsigned short int an_nastere;
+		 data_nasterii data;
 		 Cont_Bancar cont;
 public:
 
-	Persoana(string login = "", string nume = "", string prenume = "", unsigned short int an_nastere = 1900, Cont_Bancar cont = Cont_Bancar()) {
+	Persoana(string login = "", string nume = "", string prenume = "", data_nasterii data = data_nasterii(), Cont_Bancar cont = Cont_Bancar()) {
 		this->nume = nume;
 		this->prenume = prenume;
-		this->an_nastere = an_nastere;
+		this->data = data;
 		this->cont = cont;
 		this->login = login;
 	}
@@ -195,8 +212,8 @@ public:
 	void set_prenume(string prenume) {
 		this->prenume = prenume;
 	}
-	void set_an_nastere(unsigned short int an_nastere) {
-		this->an_nastere = an_nastere;
+	void set_an_nastere(data_nasterii data) {
+		this-> data= data;
 	}
 
 	string & get_login() {
@@ -208,21 +225,23 @@ public:
 	string & get_prenume() {
 		return this->prenume;
 	}
-	unsigned short int & get_an_nastere() {
-		return this->an_nastere;
+	data_nasterii& get_an_nastere() {
+		return this->data;
 	}
 	Cont_Bancar & get_cont() {
 		return this->cont;
 	}
 
-	Persoana & operator = (Persoana & p) {
-		this->login = p.login;
-		this->nume = p.nume;
-		this->prenume = p.prenume;
-		this->an_nastere = p.an_nastere;
-		this->cont = p.cont;
-		return *this;
-	}
+	Persoana& operator=(const Persoana& p) {
+    if (this != &p) { // Check for self-assignment
+        this->login = p.login;
+        this->nume = p.nume;
+        this->prenume = p.prenume;
+        this->data = p.data;
+        this->cont = p.cont;
+    }
+    return *this;
+}
 	void logare(vector < Persoana > & persoane);
 	friend ostream & operator << (ostream & out,
 		const Persoana & c);
@@ -230,35 +249,68 @@ public:
 };
 
 ostream & operator << (ostream & out,const Persoana & p) {
-	out << p.login << ' ' << p.nume << ' ' << p.prenume << ' ' << p.an_nastere << ' ' << p.cont << ' ';
+	out << p.login << ' ' << p.nume << ' ' << p.prenume << ' ' << p.data.ziua << ' ' << p.data.luna << ' ' << p.data.an << ' ' << p.cont << ' ';
 	return out;
 }
 
 istream & operator >> (istream & in, Persoana & p) {
-	in >> p.login >> p.nume >> p.prenume >> p.an_nastere >> p.cont;
+	in >> p.login >> p.nume >> p.prenume >> p.data.ziua >> p.data.luna >> p.data.an >> p.cont;
 	return in;
 }
 
-Persoana inregistreaza_persoana() {
+Persoana inregistreaza_persoana(vector<Persoana> persoane) {
 	string prenume, nume, parola, parola1, login;
-	unsigned short int anul_nasterii;
+	data_nasterii data_nasterii;
 	system("CLS");
 	cout << "Pentru va inregistra la aceasta Banca trebuie sa introduceti urmatoarele date:\n";
 
 	cout << "Prenume:" << endl;
 	cin >> prenume;
+	while(!validare_identificator(prenume)){
+        cout<<"Tip insuportat, introduceti minim 4 caractere incepand cu o litera: ";
+        cout << "Prenume:" << endl;
+        cin >> prenume;
+	}
 
-	cout << "Nume" << endl;
+	cout << "Nume:" << endl;
 	cin >> nume;
+	while(!validare_identificator(nume)){
+        cout<<"Tip insuportat, introduceti minim 4 caractere incepand cu o litera: ";
+        cout << "Nume:" << endl;
+        cin >> nume;
+	}
+    bool flag = 1;
+    cout << "Login:" << endl;
+    while(flag){
+        flag = 0;
+        cin >> login;
+        for(Persoana p:persoane){
+            if(p.get_login()==login){
+                cout<<"Login dexa existent mai introducei o data: "<<endl;
+                flag=1;
+                break;
+            }
+        }
 
-	cout << "Login" << endl;
-	cin >> login;
+    }
 
-	cout << "Anul Nasterii:" << endl;
-	cin >> anul_nasterii;
+	while(!validare_identificator(login)){
+        cout<<"Tip insuportat, introduceti minim 4 caractere incepand cu o litera: ";
+        cout << "Login:" << endl;
+        cin >> login;
+	}
+
+	cout << "\tData nasterii:" << endl;
+	cout<<"Ziua nastertii: ";
+	data_nasterii.ziua = safe_number();
+	cout<<"Luna nasterii: ";
+	data_nasterii.luna = safe_number();
+	cout<<"Anul nasterii: ";
+	data_nasterii.an = safe_number();
+
 	system("CLS");
 
-	Persoana p(login, nume, prenume, anul_nasterii);
+	Persoana p(login, nume, prenume, data_nasterii);
 	cout << "Persoana a fost inregistrata cu succes" << endl;
 	getch();
 	system("CLS");
@@ -275,7 +327,7 @@ Persoana inregistreaza_persoana() {
 		cin >> parola1;
 	}
 	system("CLS");
-	Cont_Bancar cont(generare_IBAN(nume, prenume, anul_nasterii), parola, 0);
+	Cont_Bancar cont(generare_IBAN(nume, prenume), parola, 0);
 
 	cout << "Cont Inregistrat cu Succes";
 	p.set_cont(cont);
@@ -285,6 +337,7 @@ Persoana inregistreaza_persoana() {
 
 void logare(vector < Persoana > & persoane) {
 	string login, parola;
+	bool log=0;
 	cout << "Introduceti Login: ";
 	cin >> login;
 	cout << "Introduceti Parola: ";
@@ -295,6 +348,7 @@ void logare(vector < Persoana > & persoane) {
 			if (p.get_cont().check_parola(parola)) {
 				// User logged in successfully
 				system("CLS");
+				log=1;
 				cout << "Ati intrat in cont " << p.get_nume() << ' ' << p.get_prenume() << endl;
 				cout << "Soldurile actuale:" << endl;
 				cout << "1. " << p.get_cont().get_IBAN() << ' ' << p.get_cont().get_sold() << endl;
@@ -342,14 +396,12 @@ void logare(vector < Persoana > & persoane) {
 					}
 				}
 			}
-			else {
-				cout << "Parola incorecta." << endl;
-			}
-			return; // Exit the function after processing the user's account
 		}
 	}
-
-	cout << "Utilizatorul nu exista sau parola este incorecta." << endl;
+    if(log==0){
+        	cout << "Utilizatorul nu exista sau parola este incorecta." << endl;
+            getch();
+    }
 }
 
 void init(vector < Persoana > & pers) {
@@ -365,7 +417,7 @@ void init(vector < Persoana > & pers) {
 
 }
 
-void dez_init(vector < Persoana > & pers) {
+void save_data(vector < Persoana > & pers) {
 	ofstream fout("database");
 	fout << pers.size() << endl;
 	for (Persoana p : pers) {
@@ -376,6 +428,8 @@ void dez_init(vector < Persoana > & pers) {
 }
 
 void tranzactie(vector < Persoana > & persoane) {
+
+
 	string login, parola, login_destinatar;
 	int sum = -1;
 	cout << "Introduceti Login: ";
@@ -395,9 +449,15 @@ void tranzactie(vector < Persoana > & persoane) {
 				}
 				for (Persoana & destinatar : persoane) {
 					if (destinatar.get_login() == login_destinatar) {
-						p.get_cont().set_sold(p.get_cont().get_sold() - sum);
-						destinatar.get_cont().set_sold(destinatar.get_cont().get_sold() + sum);
-						cout << "Suma a fost transferata cu succes";
+                        if(p.get_cont().get_sold()>=sum){
+                            p.get_cont().set_sold(p.get_cont().get_sold() - sum);
+                            destinatar.get_cont().set_sold(destinatar.get_cont().get_sold() + sum);
+                            cout << "Suma a fost transferata cu succes"<<endl;
+                        }
+                        else
+                        {
+                            cout<<"**\tSold insuficient**"<<endl<<endl;
+                        }
 						getch();
 						break;
 					}
@@ -406,6 +466,7 @@ void tranzactie(vector < Persoana > & persoane) {
 			}
 		}
 	}
+	cout<<"Nu exista asa persoana in baza de date"<<endl;
 
 }
 void emite_card(vector < Persoana > & persoane) {
@@ -418,9 +479,9 @@ void emite_card(vector < Persoana > & persoane) {
 	for (Persoana & p : persoane) {
 		if (p.get_login() == login) {
 			if (p.get_cont().check_parola(parola)) {
-				int nr_card, cvv, pin;
-				cout << "Introduceti numarul dorit pentru nrCardului" << endl;
-				cin >> nr_card;
+				int nr_card;
+				unsigned short int cvv, pin;
+				nr_card = generare_nr_card();
 				p.get_cont().get_card().set_nr_card(nr_card);
 				cout << "Introduceti PINUL dorit" << endl;
 				cin >> pin;
@@ -428,12 +489,49 @@ void emite_card(vector < Persoana > & persoane) {
 				cout << "Introduceti CVV dorit" << endl;
 				cin >> cvv;
 				p.get_cont().get_card().set_cvv(cvv);
-				cout << "Cardul a fost adaugat cu succes";
+				cout << "Cardul cu numarul"<<nr_card<<"a fost adaugat cu succes";
 			}
 		}
 	}
 }
 
+void delete_person(vector <Persoana> & persoane){
+    string login, parola;
+	cout << "Introduceti Login: ";
+	cin >> login;
+	cout << "Introduceti Parola: ";
+	cin >> parola;
+
+    for (auto p = persoane.begin(); p != persoane.end(); ++p) {
+		if ((p->get_login() == login) ) {
+			if (p->get_cont().check_parola(parola)) {
+                    persoane.erase(p);
+                    cout<<"Contul cu toate datele au fost sterse cu succes\n";
+                    getch();
+                    break;
+			}
+		}
+    }
+
+}
+
+void afiseaza_persoana(vector<Persoana> persoane){
+    string login, parola;
+	cout << "Introduceti Login: ";
+	cin >> login;
+	cout << "Introduceti Parola: ";
+	cin >> parola;
+
+    for (Persoana p : persoane) {
+		if (p.get_login() == login) {
+			if (p.get_cont().check_parola(parola)) {
+                    cout<<p<<endl;
+			}
+		}
+    }
+    getch();
+
+}
 int main() {
 	vector < Persoana > persoane;
 	init(persoane);
@@ -445,36 +543,50 @@ int main() {
 		cout << "2.Intrati in Contul Bancar\n";
 		cout << "3.Evectuati o Tranzactie\n";
 		cout << "4.Emiteti un card sau schimbatil pe cel vechi\n";
+		cout << "5.Afiseaza datele despre persoana\n";
+		cout << "6.Sterge inregistrarea la banca\n";
 		cout << "0. Iesire" << endl;
 		cin >> optiune;
 		switch (optiune) {
 		case '1': {
-			Persoana p = inregistreaza_persoana();
+			Persoana p = inregistreaza_persoana(persoane);
 			persoane.push_back(p);
 		}
 
 				  break;
 		case '2': {
 			logare(persoane);
+			save_data(persoane);
 		}
 				  break;
 		case '3': {
 			tranzactie(persoane);
+			save_data(persoane);
 
 		}
 				  break;
 		case '4': {
 			emite_card(persoane);
+			save_data(persoane);
 		}
 				  break;
+        case '5': {
+            afiseaza_persoana(persoane);
+        break;
+        }
+        case '6': {
+            delete_person(persoane);
+            save_data(persoane);
+                break;
+        }
 		case '0': {
 			flag = 0;
-			break;
+                break;
 		}
 
 		}
 	}
-	dez_init(persoane);
+	save_data(persoane);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
